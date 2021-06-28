@@ -1,7 +1,21 @@
 import { atom, useAtom } from "jotai";
 import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const countAtom = atom(0);
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotating = styled.div`
+  animation: ${rotate} infinite 20s linear;
+`;
 
 function App() {
   const [count, setCount] = useAtom(countAtom);
@@ -14,7 +28,7 @@ function App() {
             className="max-w-md mx-auto py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
             onClick={() => setCount((c) => c + 1)}
           >
-            Counter: {count}
+            <Rotating>Counter: {count}</Rotating>
           </div>
         </div>
       </div>
